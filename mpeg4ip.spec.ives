@@ -1,0 +1,78 @@
+Name:      mpeg4ip
+Version:   2.0.0
+#Ne pas enlever le .ives a la fin de la release !
+#Cela est utilise par les scripts de recherche de package.
+Release:   1.ives_distrib
+Summary:   [IVeS] Open MPEG-4 streaming tools
+Vendor:   IVeS
+Group:     Applications/Internet
+License: GPL
+URL:       http://www.ives.fr
+BuildArchitectures: ives_archi
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRequires: automake libtool
+Requires:  ivespkg
+
+%description
+MPEG4IP provides an end-to-end system to explore streaming multimedia. The
+package includes many existing open source packages and the "glue" to
+integrate them together. This is a tool for streaming video and audio that
+is standards-oriented and free from proprietary protocols and extensions.
+
+%package devel
+Summary: Libraries, includes to develop applications with %{name}.
+Group: Development/Libraries
+Requires: %{name} = %{version}
+
+%description devel
+The %{name}-devel package contains the header files and static libraries for
+building apps and func which use %{name}.
+
+  
+%clean
+echo "############################# Clean"
+echo Clean du repertoire $RPM_BUILD_ROOT
+[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf "$RPM_BUILD_ROOT"
+
+%prep
+echo "Export du SVN d'IVES"
+svn export --force http://svn.ives.fr/svn-libs-dev/asterisk/libsmedia/mp4v2/tags/%version %name
+cd %name
+
+%build
+echo "Build"
+echo $PWD
+cd %name
+%configure
+make
+
+%install
+echo "############################# Install"
+cd %name
+%makeinstall
+
+%files
+%defattr(-,root,root,-)
+%{_libdir}/*.so
+%{_libdir}/*.so.*
+%attr(0755,root,root) /usr/bin/
+/usr/share/man
+
+%files devel
+%defattr(-,root,root)
+%attr(0755,root,root) /usr/include/
+%{_libdir}/*.a
+%{_libdir}/*.la
+
+
+%changelog
+* Tue Dec 01 2011 Emmanuel BUU <emmanuel.buu@ives.fr>
+- version 1.9.2 from google code trunk
+* Tue Dec 01 2011 Emmanuel BUU <emmanuel.buu@ives.fr>
+- version 1.9.1 imported from google code for mediaserver
+
+* Fri Apr 03 2009 Emmanuel BUU <emmanuel.buu@ives.fr> 1.5.0-2.ives
+- compilation with gcc 4.3.x. Improved packaging
+* Mon Mar 09 2009 Didier Chabanol <didier.chabanol@ives.fr> 1.5.0-1.ives
+- Initial package
+
