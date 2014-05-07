@@ -56,7 +56,10 @@ function create_rpm
     echo "%_gpg_path" $PWD"/gnupg" >> ~/.rpmmacros
     echo "%vendor IVeS" >> ~/.rpmmacros
     #Import de la clef gpg IVeS
-    svn export https://svn.ives.fr/svn-libs-dev/gnupg
+    if [ "$1" -ne "nosign" ]
+    then
+        svn export https://svn.ives.fr/svn-libs-dev/gnupg
+    fi
     mkdir -p rpmbuild
     mkdir -p rpmbuild/SOURCES
     mkdir -p rpmbuild/SPECS
@@ -73,7 +76,12 @@ function create_rpm
     cp ../../${PROJET}.spec ${PROJET}.spec
     cd ../../
     #Cree le package
-    rpmbuild -bb --sign $PWD/rpmbuild/SPECS/${PROJET}.spec
+    if [ $1 -eq "nosign" ]
+    then
+        rpmbuild -bb $PWD/rpmbuild/SPECS/${PROJET}.spec
+    else
+        rpmbuild -bb --sign $PWD/rpmbuild/SPECS/${PROJET}.spec
+    fi
     echo "************************* fin du rpmbuild ****************************"
     #Recuperation du rpm
     mv -f $PWD/rpmbuild/RPMS/i386/*.rpm $PWD/.
@@ -95,7 +103,7 @@ case $1 in
   	"rpm")
   		echo "Creation du rpm"
                 prepare_spec
-  		create_rpm;;
+  		create_rpm $2;;
   	*)
   		echo "usage: install.ksh [options]" 
   		echo "options :"
