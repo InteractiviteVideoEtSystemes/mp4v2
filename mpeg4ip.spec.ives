@@ -43,7 +43,7 @@ cd %name
 echo "Build"
 echo $PWD
 cd %name
-%configure
+%configure --with-pic
 make
 
 %install
