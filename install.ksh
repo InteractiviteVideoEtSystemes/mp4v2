@@ -1,4 +1,4 @@
-#!/usr/bin/ksh
+#!/bin/bash
 
 #Nom du paquetage
 PROJET=mpeg4ip
@@ -56,7 +56,7 @@ function create_rpm
     echo "%_gpg_path" $PWD"/gnupg" >> ~/.rpmmacros
     echo "%vendor IVeS" >> ~/.rpmmacros
     #Import de la clef gpg IVeS
-    if [ "$1" -ne "nosign" ]
+    if [ "$1" != "nosign" ]
     then
         svn export https://svn.ives.fr/svn-libs-dev/gnupg
     fi
@@ -76,7 +76,7 @@ function create_rpm
     cp ../../${PROJET}.spec ${PROJET}.spec
     cd ../../
     #Cree le package
-    if [ $1 -eq "nosign" ]
+    if [ "$1" == "nosign" ]
     then
         rpmbuild -bb $PWD/rpmbuild/SPECS/${PROJET}.spec
     else
