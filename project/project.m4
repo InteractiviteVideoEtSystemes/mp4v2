@@ -19,7 +19,7 @@ define(<<__PROJECT_repo_uuid>>,       <<6e6572fa-98a6-11dd-ad9f-f77439c74b79>>)d
 define(<<__PROJECT_repo_rev>>,        <<493>>)dnl
 define(<<__PROJECT_repo_date>>,       <<2012-05-20 15:16:54 -0700 (Sun, 20 May 2012)>>)dnl
 define(<<__PROJECT_repo_type>>,       <<stable>>)dnl
-define(<<__PROJECT_build>>,           <<Sun May 20 15:18:53 PDT 2012>>)dnl
+define(<<__PROJECT_build>>,           <<Thu Apr 30 16:01:07 CEST 2015>>)dnl
 dnl
-define(<<__MAKE_ABS_TOP_BUILDDIR>>,  <</home/jnoring/Desktop/mp4v2/build>>)dnl
-define(<<__MAKE_ABS_TOP_SRCDIR>>,    <</home/jnoring/Desktop/mp4v2/build/..>>)dnl
+define(<<__MAKE_ABS_TOP_BUILDDIR>>,  <</home/ebuu/mp4v2>>)dnl
+define(<<__MAKE_ABS_TOP_SRCDIR>>,    <</home/ebuu/mp4v2>>)dnl

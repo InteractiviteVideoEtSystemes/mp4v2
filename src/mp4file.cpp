@@ -129,6 +129,7 @@ void MP4File::Create( const char* fileName,
     if (add_iods != 0) {
         (void)AddChildAtom("moov", "iods");
     }
+    SetDuration(0);
 }
 
 bool MP4File::Use64Bits (const char *atomName)
