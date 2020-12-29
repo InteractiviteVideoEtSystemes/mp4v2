@@ -11,37 +11,6 @@ function svn_export
 }
 
 #Preparation du fichier spec de packaging rpm
-function prepare_spec
-{
-    #Architecture
-    SRVARCH=`uname -i`
-    #Check Fedora
-    rpm -q fedora-release > /dev/null
-    fcres=$?
-    #Check CentOS
-    rpm -q centos-release > /dev/null
-    cosres=$?
-    #Fedora Core Version
-    if [ ${fcres} -eq 0 ]
-       then
-       FCV=`rpm -q fedora-release | sed s/fedora-release-// | sed s/-.*//`
-       sed s/ives_distrib/ives.fc${FCV}/g ${PROJET}.spec.ives > ${PROJET}.spec.tmp
-       sed s/ives_archi/${SRVARCH}/g ${PROJET}.spec.tmp > ${PROJET}.spec
-       rm ${PROJET}.spec.tmp
-    #CentOS Version
-    elif [ ${cosres} -eq 0 ]
-       then
-       COSV=`rpm -q centos-release | sed s/centos-release-// | sed s/-.*//`
-       sed s/ives_distrib/ives.el${COSV}/g ${PROJET}.spec.ives > ${PROJET}.spec.tmp
-       sed s/ives_archi/${SRVARCH}/g ${PROJET}.spec.tmp > ${PROJET}.spec
-       rm ${PROJET}.spec.tmp
-    else
-       echo "Erreur: On n'a pas trouvé de distribution Fedora, ou CentOS !"
-       exit
-    fi
-}
-
-#Creation de l'environnement de packaging rpm
 function create_rpm
 {
     #Cree l'environnement de creation de package
@@ -72,9 +41,9 @@ function create_rpm
     mkdir -p rpmbuild/RPMS/i686
     mkdir -p rpmbuild/RPMS/i586
     #Recuperation de la description du package 
-    cd ./rpmbuild/SPECS/
-    cp ../../${PROJET}.spec ${PROJET}.spec
-    cd ../../
+    
+    cp ${PROJET}.spec $PWD/rpmbuild/SPECS/${PROJET}.spec
+    ln -s $PWD $PWD/rpmbuild/SOURCES/${PROJET}
     #Cree le package
     if [ "$1" == "nosign" ]
     then
@@ -82,9 +51,11 @@ function create_rpm
     else
         rpmbuild -bb --sign $PWD/rpmbuild/SPECS/${PROJET}.spec
     fi
+    rm -f $PWD $PWD/rpmbuild/SOURCES/${PROJET}
+
     echo "************************* fin du rpmbuild ****************************"
     #Recuperation du rpm
-    mv -f $PWD/rpmbuild/RPMS/i386/*.rpm $PWD/.
+#    mv -f $PWD/rpmbuild/RPMS/i386/*.rpm $PWD/.
     mv -f $PWD/rpmbuild/RPMS/x86_64/*.rpm $PWD/.
     clean
 }
@@ -102,7 +73,6 @@ case $1 in
   		clean ;;
   	"rpm")
   		echo "Creation du rpm"
-                prepare_spec
   		create_rpm $2;;
   	*)
   		echo "usage: install.ksh [options]" 
