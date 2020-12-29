@@ -17,4 +17,7 @@ autom4te.cache/
 config.log
 config.status
 libmp4v2.la
+libplatform/config.h
+libplatform/stamp-h1
+libtool
 *.rpm
