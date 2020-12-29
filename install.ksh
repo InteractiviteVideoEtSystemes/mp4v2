@@ -51,7 +51,6 @@ function create_rpm
     else
         rpmbuild -bb --sign $PWD/rpmbuild/SPECS/${PROJET}.spec
     fi
-    rm -f $PWD $PWD/rpmbuild/SOURCES/${PROJET}
 
     echo "************************* fin du rpmbuild ****************************"
     #Recuperation du rpm

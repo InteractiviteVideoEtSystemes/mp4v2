@@ -31,6 +31,10 @@ building apps and func which use %{name}.
   
 %clean
 echo "############################# Clean"
+cd $RPM_SOURCE_DIR/%name
+make clean
+cd ..
+rm -f $RPM_SOURCE_DIR/%name
 echo Clean du repertoire $RPM_BUILD_ROOT
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf "$RPM_BUILD_ROOT"
 
