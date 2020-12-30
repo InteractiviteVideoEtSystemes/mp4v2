@@ -275,6 +275,8 @@ AM_LDFLAGS = $(strip $(MK_CXX_ARCH) $(X_CXX_ARCH))
 
 AM_CXXFLAGS = $(strip $(MK_CXX_W) $(X_CXX_W))
 
+ACLOCAL_AMFLAGS = -I m4
+
 LIBS := $(LIBS) $(X_MINGW_LIBS)
 
 ###############################################################################

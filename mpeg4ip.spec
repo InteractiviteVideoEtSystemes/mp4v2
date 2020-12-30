@@ -40,12 +40,13 @@ echo Clean du repertoire $RPM_BUILD_ROOT
 
 %prep
 cd $RPM_SOURCE_DIR/%name
-if ! type autoconf-1.11
-then
-        aclocal
-        autoconf
-        libtoolize -c
-fi
+# Shoudl be done once and archived
+#if ! type autoconf-1.11
+#then
+#        aclocal
+#        autoconf
+#        libtoolize -c
+#fi
 %configure --with-pic
 
 %build

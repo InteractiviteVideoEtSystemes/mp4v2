@@ -28,7 +28,6 @@ m4_define([PRJ_version],ifelse(
 
 AC_PREREQ([2.61])
 AC_INIT(PRJ_name,PRJ_version,PRJ_bugreport)
-LT_INIT
 AC_MSG_NOTICE([
   -->
   --> Configuring ]AC_PACKAGE_STRING[
@@ -36,8 +35,10 @@ AC_MSG_NOTICE([
 
 AC_CONFIG_AUX_DIR([autoaux])
 AM_INIT_AUTOMAKE([1.9.6 foreign -Wall -Wno-portability -Werror subdir-objects nostdinc no-dist-gzip dist-bzip2 dist-zip dejagnu])
+LT_INIT
 
 AC_CONFIG_SRCDIR([src/mp4.cpp])
+AC_CONFIG_MACRO_DIR([m4])
 
 # disable unused langs (improves config speed, reduces configure file size)
 AC_DEFUN([_LT_AC_LANG_F77_CONFIG], [:])
