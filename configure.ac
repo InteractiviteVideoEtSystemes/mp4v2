@@ -28,7 +28,7 @@ m4_define([PRJ_version],ifelse(
 
 AC_PREREQ([2.61])
 AC_INIT(PRJ_name,PRJ_version,PRJ_bugreport)
-
+LT_INIT
 AC_MSG_NOTICE([
   -->
   --> Configuring ]AC_PACKAGE_STRING[
