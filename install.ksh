@@ -16,9 +16,9 @@ function create_rpm
     # Mise a jour libtool
     if ! type autoconf-1.11
     then
-        libtoolize -c
         aclocal
         autoconf
+        libtoolize -c
     fi
     #Cree l'environnement de creation de package
     #Creation des macros rpmbuild
