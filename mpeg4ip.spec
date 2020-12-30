@@ -40,12 +40,6 @@ echo Clean du repertoire $RPM_BUILD_ROOT
 
 %prep
 cd $RPM_SOURCE_DIR/%name
-if ! type autoconf-1.11
-then
-    libtoolize -c
-    aclocal
-    autoconf
-fi
 %configure --with-pic
 
 %build
@@ -78,9 +72,9 @@ cd $RPM_SOURCE_DIR/%name
 - port to centos 7
 - version 2.0.0
 
-* Tue Dec 01 2011 Emmanuel BUU <emmanuel.buu@ives.fr>
+* Thu Dec 01 2011 Emmanuel BUU <emmanuel.buu@ives.fr>
 - version 1.9.2 from google code trunk
-* Tue Dec 01 2011 Emmanuel BUU <emmanuel.buu@ives.fr>
+* Thu Dec 01 2011 Emmanuel BUU <emmanuel.buu@ives.fr>
 - version 1.9.1 imported from google code for mediaserver
 
 * Fri Apr 03 2009 Emmanuel BUU <emmanuel.buu@ives.fr> 1.5.0-2.ives
