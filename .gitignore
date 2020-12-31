@@ -21,3 +21,4 @@ libplatform/config.h
 libplatform/stamp-h1
 libtool
 *.rpm
+*.deps
