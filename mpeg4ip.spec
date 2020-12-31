@@ -43,9 +43,10 @@ cd $RPM_SOURCE_DIR/%name
 # Shoudl be done once and archived
 #if ! type autoconf-1.11
 #then
-#        aclocal
-#        autoconf
-#        libtoolize -c
+libtoolize -c --force
+aclocal
+autoconf
+automake
 #fi
 %configure --with-pic
 
