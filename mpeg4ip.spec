@@ -57,10 +57,12 @@ make
 # Remove build root from path
 # echo $RPM_BUILD_ROOT | sed "s/\//\\\//g"
 ESC_ROOT="`echo ${RPM_BUILD_ROOT} | sed 's/\//\\\\\//g'`"
-sed -r "s/${ESC_ROOT}//g" libmp4v2.la
+sed -r "s/${ESC_ROOT}//g" libmp4v2.la > libmp4v2.la.new
+rm libmp4v2.la
+mv libmp4v2.la.new libmp4v2.la
 # Recompile mp4 binaries t
-#rm -f .libs/mp4*
-#make
+rm -f mp4art mp4chaps mp4extract mp4file mp4info mp4subtitle mp4tags mp4track mp4trackdump
+make
 
 %install
 echo "############################# Install"
