@@ -54,6 +54,13 @@ automake
 echo "Build"
 cd $RPM_SOURCE_DIR/%name
 make
+# Remove build root from path
+# echo $RPM_BUILD_ROOT | sed "s/\//\\\//g"
+ESC_ROOT="`echo ${RPM_BUILD_ROOT} | sed 's/\//\\\\\//g'`"
+sed -r "s/${ESC_ROOT}//g" libmp4v2.la
+# Recompile mp4 binaries t
+#rm -f .libs/mp4*
+#make
 
 %install
 echo "############################# Install"
