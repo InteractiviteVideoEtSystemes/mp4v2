@@ -64,12 +64,23 @@ cd $RPM_SOURCE_DIR/%name
 %defattr(-,root,root,-)
 %{_libdir}/*.so
 %{_libdir}/*.so.*
-%attr(0755,root,root) /usr/bin/
-/usr/share/man
+%attr(0755,root,root) /usr/bin/mp4art
+%attr(0755,root,root) /usr/bin/mp4chaps
+%attr(0755,root,root) /usr/bin/mp4extract
+%attr(0755,root,root) /usr/bin/mp4file
+%attr(0755,root,root) /usr/bin/mp4info
+%attr(0755,root,root) /usr/bin/mp4subtitle
+%attr(0755,root,root) /usr/bin/mp4tags
+%attr(0755,root,root) /usr/bin/mp4track
+%attr(0755,root,root) /usr/bin/mp4trackdump
+/usr/share/man/man1/mp4art.1.gz
+/usr/share/man/man1/mp4file.1.gz
+/usr/share/man/man1/mp4subtitle.1.gz
+/usr/share/man/man1/mp4track.1.gz
 
 %files devel
 %defattr(-,root,root)
-%attr(0755,root,root) /usr/include/
+%attr(0755,root,root) /usr/include/mp4v2/
 %{_libdir}/*.a
 %{_libdir}/*.la
 
